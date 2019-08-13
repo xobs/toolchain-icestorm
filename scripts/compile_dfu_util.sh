@@ -23,8 +23,14 @@ cd $BUILD_DIR/$dfu_util
 # -- Compile it
 ./autogen.sh
 if [ $ARCH == "darwin" ]; then
-    ./configure LDFLAGS=-static
-    make
+    ./configure --libdir=/opt/local/lib --includedir=/opt/local/include
+    cd src
+    $CC -g -O2 \
+        -o dfu-util$EXE \
+        main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
+        -static -lusb-1.0 -lpthread \
+        -DHAVE_CONFIG_H=1 -I..
+    cd ..
 else
     ./configure $HOST_FLAGS
     cd src
@@ -32,9 +38,9 @@ else
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
         -static $WORK_DIR/build-data/lib/$ARCH/libusb-1.0.a -lpthread \
-        -DHAVE_CONFIG_H=1
-    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_CONFIG_H=1
-    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -DHAVE_CONFIG_H=1
+        -DHAVE_CONFIG_H=1 -I..
+    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_CONFIG_H=1 -I..
+    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -DHAVE_CONFIG_H=1 -I..
     cd ..
 fi
 
