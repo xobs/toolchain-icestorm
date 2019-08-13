@@ -55,14 +55,14 @@ if [ $ARCH == "windows_x86" ]; then
                           gcc-5-mingw-w64 gc++-5-mingw-w64 wine
   sudo apt-get autoremove -y
   sudo update-alternatives \
-    --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 libz-mingw-w64-dev \
+    --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 60 \
     --slave /usr/bin/i686-w64-mingw32-g++ i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-5
   i686-w64-mingw32-gcc --version
   i686-w64-mingw32-g++ --version
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
-  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev libz-mingw-w64-dev \
+  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-5-mingw-w64 gc++-5-mingw-w64 wine
