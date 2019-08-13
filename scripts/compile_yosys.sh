@@ -61,7 +61,7 @@ else
   sed -i "s/CXX = gcc$/CXX = $CC/;" Makefile
   sed -i "s/LDFLAGS += -rdynamic/LDFLAGS +=/;" Makefile
   make -j$J YOSYS_VER="$VER (Apio build)" \
-            LDLIBS="-static -lstdc++ -lm" \
+            LDLIBS="-static -lstdc++ -lm -lz" \
             ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm -ldl -pthread -lz\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS -Wno-unused-but-set-variable\" ABC_USE_NO_READLINE=1"
