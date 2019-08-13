@@ -22,11 +22,12 @@ cd $BUILD_DIR/$dfu_util
 
 # -- Compile it
 ./autogen.sh
-cd src
 if [ $ARCH == "darwin" ]; then
     ./configure LDFLAGS=-static
     make
 else
+    ./configure
+    cd src
     "$CC" -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
@@ -34,6 +35,7 @@ else
         -DHAVE_CONFIG_H=1
     "$CC" -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_CONFIG_H=1
     "$CC" -o dfu-suffix$EXE suffix.c dfu_file.c -DHAVE_CONFIG_H=1
+    cd ..
 fi
 
 TOOLS="dfu-util dfu-prefix dfu-suffix"
