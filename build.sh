@@ -20,7 +20,7 @@ NAME=toolchain-icestorm
 
 # -- Debug flags
 INSTALL_DEPS=1
-COMPILE_ARACHNE=0
+COMPILE_DFU_UTIL=1
 COMPILE_ICESTORM=1
 COMPILE_YOSYS=1
 COMPILE_ICOTOOLS=0
@@ -102,6 +102,14 @@ mkdir -p $BUILD_DIR
 mkdir -p $PACKAGE_DIR/$NAME/bin
 mkdir -p $PACKAGE_DIR/$NAME/share
 
+# --------- Compile dfu-utils ------------------------------------------
+if [ $COMPILE_DFU_UTIL == "1" ]; then
+
+  print ">> Compile dfu-utils"
+  . $WORK_DIR/scripts/compile_dfu_util.sh
+
+fi
+
 # --------- Compile icestorm ---------------------------------------
 if [ $COMPILE_ICESTORM == "1" ]; then
 
@@ -109,15 +117,6 @@ if [ $COMPILE_ICESTORM == "1" ]; then
   . $WORK_DIR/scripts/compile_icestorm.sh
 
 fi
-
-# --------- Compile arachne-pnr ------------------------------------
-if [ $COMPILE_ARACHNE == "1" ]; then
-
-  print ">> Compile arachne-pnr"
-  . $WORK_DIR/scripts/compile_arachnepnr.sh
-
-fi
-
 
 # --------- Compile yosys ------------------------------------------
 if [ $COMPILE_YOSYS == "1" ]; then
