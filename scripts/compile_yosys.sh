@@ -36,8 +36,8 @@ cd $BUILD_DIR/$YOSYS
 if [ $ARCH == "darwin" ]; then
   make config-clang
   gsed -i "s/-Wall -Wextra -ggdb/-w/;" Makefile
-  make -j$J YOSYS_VER="$VER (Apio build)" \
-            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0
+  make -j$J YOSYS_VER="$VER (Fomu build)" \
+            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1"
 
@@ -49,9 +49,9 @@ elif [ ${ARCH:0:7} == "windows" ]; then
   sed -i "s/CXX = gcc$/CXX = $CC/;" Makefile
   sed -i "s/LDLIBS += -lrt/LDLIBS +=/;" Makefile
   sed -i "s/LDFLAGS += -rdynamic/LDFLAGS +=/;" Makefile
-  make -j$J YOSYS_VER="$VER (Apio build)" CPPFLAGS="-DYOSYS_WIN32_UNIX_DIR" \
+  make -j$J YOSYS_VER="$VER (Fomu build)" CPPFLAGS="-DYOSYS_WIN32_UNIX_DIR" \
             LDLIBS="-static -lstdc++ -lm" \
-            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 \
+            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1 ABC_USE_NO_PTHREADS=1 ABC_USE_LIBSTDCXX=1"
 else
@@ -62,7 +62,7 @@ else
   sed -i "s/LDFLAGS += -rdynamic/LDFLAGS +=/;" Makefile
   make -j$J YOSYS_VER="$VER (Apio build)" \
             LDLIBS="-static -lstdc++ -lm -lz" \
-            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 \
+            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm -ldl -pthread -lz\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS -Wno-unused-but-set-variable\" ABC_USE_NO_READLINE=1"
 fi
