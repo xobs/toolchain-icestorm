@@ -25,11 +25,13 @@ cd $BUILD_DIR/$dfu_util
 if [ $ARCH == "darwin" ]; then
     ./configure --libdir=/opt/local/lib --includedir=/opt/local/include
     cd src
-    $CC -g -O2 \
+    $CC -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
-        -static -lusb-1.0 -lpthread \
+        -static -lpthread $(pkg-config --cflags --libs --static libusb) \
         -DHAVE_CONFIG_H=1 -I..
+    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
+    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
     cd ..
 else
     ./configure $HOST_FLAGS
