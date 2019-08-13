@@ -15,12 +15,14 @@ fi
 if [ $ARCH == "linux_armv7l" ]; then
   CC="arm-linux-gnueabihf-gcc"
   CXX="arm-linux-gnueabihf-g++"
+  HOST_FLAGS="--host=arm-linux-gnueabihf"
   ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
   CC="aarch64-linux-gnu-gcc"
   CXX="aarch64-linux-gnu-g++"
+  HOST_FLAGS="--host=aarch64-linux-gnu"
   ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
 fi
 
@@ -29,6 +31,7 @@ if [ $ARCH == "windows_x86" ]; then
   EXE=".exe"
   CC="i686-w64-mingw32-gcc"
   CXX="i686-w64-mingw32-g++"
+  HOST_FLAGS="--host=i686-w64-mingw32"
   ABC_ARCHFLAGS="-DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
 fi
 
@@ -37,6 +40,7 @@ if [ $ARCH == "windows_amd64" ]; then
   EXE=".exe"
   CC="x86_64-w64-mingw32-gcc"
   CXX="x86_64-w64-mingw32-g++"
+  HOST_FLAGS="--host=x86_64-w64-mingw32"
   ABC_ARCHFLAGS="-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
 fi
 

@@ -26,7 +26,7 @@ if [ $ARCH == "darwin" ]; then
     ./configure LDFLAGS=-static
     make
 else
-    ./configure
+    ./configure $HOST_FLAGS
     cd src
     "$CC" -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
