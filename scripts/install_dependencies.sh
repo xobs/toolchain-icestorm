@@ -14,11 +14,10 @@ if [ $ARCH == "linux_x86_64" ]; then
 fi
 
 if [ $ARCH == "linux_i686" ]; then
-  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
+  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev:i386 \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-5-multilib g++-5-multilib
-  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   sudo update-alternatives \
     --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 \
@@ -28,24 +27,22 @@ if [ $ARCH == "linux_i686" ]; then
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
-  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
+  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev:armhf \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
                           binfmt-support qemu-user-static
-  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   arm-linux-gnueabihf-gcc --version
   arm-linux-gnueabihf-g++ --version
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
-  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
+  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev:arm64 \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
                           binfmt-support qemu-user-static
-  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   aarch64-linux-gnu-gcc --version
   aarch64-linux-gnu-g++ --version
