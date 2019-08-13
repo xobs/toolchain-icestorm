@@ -18,6 +18,7 @@ if [ $ARCH == "linux_i686" ]; then
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-5-multilib g++-5-multilib
+  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   sudo update-alternatives \
     --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 \
@@ -32,6 +33,7 @@ if [ $ARCH == "linux_armv7l" ]; then
                           xdot pkg-config python3 \
                           gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
                           binfmt-support qemu-user-static
+  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   arm-linux-gnueabihf-gcc --version
   arm-linux-gnueabihf-g++ --version
@@ -43,6 +45,7 @@ if [ $ARCH == "linux_aarch64" ]; then
                           xdot pkg-config python3 \
                           gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
                           binfmt-support qemu-user-static
+  ln -s /usr/include/x86_64-linux-gnu/zconf.h /usr/include
   sudo apt-get autoremove -y
   aarch64-linux-gnu-gcc --version
   aarch64-linux-gnu-g++ --version
@@ -55,14 +58,14 @@ if [ $ARCH == "windows_x86" ]; then
                           gcc-5-mingw-w64 gc++-5-mingw-w64 wine
   sudo apt-get autoremove -y
   sudo update-alternatives \
-    --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 60 \
+    --install /usr/bin/i686-w64-mingw32-gcc i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-5 libz-mingw-w64-dev \
     --slave /usr/bin/i686-w64-mingw32-g++ i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-5
   i686-w64-mingw32-gcc --version
   i686-w64-mingw32-g++ --version
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
-  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
+  sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev libz-mingw-w64-dev \
                           gawk tcl-dev libffi-dev git mercurial graphviz \
                           xdot pkg-config python3 \
                           gcc-5-mingw-w64 gc++-5-mingw-w64 wine
