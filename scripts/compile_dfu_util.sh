@@ -21,30 +21,49 @@ rsync -a $dfu_util $BUILD_DIR --exclude .git
 cd $BUILD_DIR/$dfu_util
 
 # -- Compile it
-./autogen.sh
+cd src
+cat > config.h <<EOF
+#define HAVE_ERR 1
+#define HAVE_GETPAGESIZE 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_NANOSLEEP 1
+#define HAVE_STDINT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_STRING_H 1
+#define HAVE_SYSEXITS_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_UNISTD_H 1
+#define PACKAGE "dfu-util"
+#define PACKAGE_BUGREPORT "http://sourceforge.net/p/dfu-util/tickets/"
+#define PACKAGE_NAME "dfu-util"
+#define PACKAGE_STRING "dfu-util 0.9"
+#define PACKAGE_TARNAME "dfu-util"
+#define PACKAGE_URL "http://dfu-util.sourceforge.net"
+#define PACKAGE_VERSION "0.9"
+#define STDC_HEADERS 1
+#define VERSION "0.9"
+EOF
 if [ $ARCH == "darwin" ]; then
-    ./configure --libdir=/opt/local/lib --includedir=/opt/local/include
-    cd src
     $CC -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
-        -static -lpthread $(pkg-config --cflags --libs --static /usr/local/Cellar/libusb/*/lib/pkgconfig/libusb-1.0.pc) \
-        -DHAVE_CONFIG_H=1 -I..
-    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
-    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
-    cd ..
+        -static -lpthread $(pkg-config --libs --static /usr/local/Cellar/libusb/*/lib/pkgconfig/libusb-1.0.pc) \
+        -DHAVE_CONFIG_H=1
+    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
+    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
 else
-    ./configure $HOST_FLAGS
-    cd src
     $CC -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
         -static $WORK_DIR/build-data/lib/$ARCH/libusb-1.0.a -lpthread \
-        -DHAVE_CONFIG_H=1 -DHAVE_NANOSLEEP=1 -I..
-    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
-    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1 -I..
-    cd ..
+        -DHAVE_CONFIG_H=1
+    $CC -o dfu-prefix$EXE prefix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
+    $CC -o dfu-suffix$EXE suffix.c dfu_file.c -static -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
 fi
+cd ..
 
 TOOLS="dfu-util dfu-prefix dfu-suffix"
 
