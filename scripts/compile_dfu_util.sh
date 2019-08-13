@@ -23,7 +23,6 @@ cd $BUILD_DIR/$dfu_util
 # -- Compile it
 cd src
 cat > config.h <<EOF
-#define HAVE_ERR 1
 #define HAVE_GETPAGESIZE 1
 #define HAVE_INTTYPES_H 1
 #define HAVE_MEMORY_H 1
@@ -32,7 +31,6 @@ cat > config.h <<EOF
 #define HAVE_STDLIB_H 1
 #define HAVE_STRINGS_H 1
 #define HAVE_STRING_H 1
-#define HAVE_SYSEXITS_H 1
 #define HAVE_SYS_STAT_H 1
 #define HAVE_SYS_TYPES_H 1
 #define HAVE_UNISTD_H 1
