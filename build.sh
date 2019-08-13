@@ -20,10 +20,10 @@ NAME=toolchain-icestorm
 
 # -- Debug flags
 INSTALL_DEPS=1
+COMPILE_ARACHNE=0
 COMPILE_ICESTORM=1
-COMPILE_ARACHNE=1
 COMPILE_YOSYS=1
-COMPILE_ICOTOOLS=1
+COMPILE_ICOTOOLS=0
 CREATE_PACKAGE=1
 
 # -- Store current dir
@@ -117,6 +117,7 @@ if [ $COMPILE_ARACHNE == "1" ]; then
   . $WORK_DIR/scripts/compile_arachnepnr.sh
 
 fi
+
 
 # --------- Compile yosys ------------------------------------------
 if [ $COMPILE_YOSYS == "1" ]; then

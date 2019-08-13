@@ -1,7 +1,7 @@
 # -- Compile Icestorm script
 
 ICESTORM=icestorm
-COMMIT=5ab07ed32a768d484284f1d0e58f61c2ef9d398a
+COMMIT=cfac9f950412ae139fa3c085c21881cbaf24822f
 GIT_ICESTORM=https://github.com/cliffordwolf/icestorm.git
 
 # -- Setup
@@ -23,26 +23,18 @@ cd $BUILD_DIR/$ICESTORM
 # -- Compile it
 if [ $ARCH == "darwin" ]; then
   gsed -i "s/-ggdb //;" config.mk
-  make -j$J CC="$CC" \
-            SUBDIRS="iceprog"
   make -j$J CXX="$CXX" \
             SUBDIRS="icebox icepack icemulti icepll icetime icebram"
 else
   sed -i "s/-ggdb //;" config.mk
-  sed -i "s/\$^ \$(LDLIBS)/\$^ \$(LDLIBS) \$(LDUSBSTATIC)/g" iceprog/Makefile
-  make -j$J CC="$CC" \
-            SUBDIRS="iceprog" \
-            LDFLAGS="-static -pthread -L$WORK_DIR/build-data/lib/$ARCH " \
-            LDUSBSTATIC="-lusb-1.0"\
-            CFLAGS="-MD -O0 -Wall -std=c99 -I$WORK_DIR/build-data/include/libftdi1 -I$WORK_DIR/build-data/include/libusb-1.0"
   make -j$J CXX="$CXX" STATIC=1 \
             SUBDIRS="icebox icepack icemulti icepll icetime icebram"
 fi
 
-TOOLS="icepack iceprog icemulti icepll icetime icebram"
+TOOLS="icepack icemulti icepll icetime icebram"
 
 EXE_O=
-if [ -f iceprog/iceprog.exe ]; then
+if [ -f icepack/icepack.exe ]; then
   EXE_O=.exe
 fi
 
