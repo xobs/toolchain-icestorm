@@ -45,10 +45,13 @@ cat > config.h <<EOF
 #define VERSION "0.9"
 EOF
 if [ $ARCH == "darwin" ]; then
-    $CC -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
+    export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+    echo pkgconfig:
+    pkg-config --libs --static libusb-1.0
+    $CC -g -O2 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
-        -lpthread $(pkg-config --libs --static /usr/local/Cellar/libusb/*/lib/pkgconfig/libusb-1.0.pc) \
+        -lpthread $(pkg-config --cflags --libs --static libusb-1.0) \
         -DHAVE_CONFIG_H=1
     $CC -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
     $CC -o dfu-suffix$EXE suffix.c dfu_file.c -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
