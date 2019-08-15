@@ -39,3 +39,4 @@ deploy:
   on:
     repo: xobs/toolchain-icestorm
     all_branches: true
+    tags: true
