@@ -36,3 +36,11 @@ deploy:
   on:
     repo: FPGAwars/toolchain-icestorm
     all_branches: true
+branches:
+  only:
+    # Release tags
+    - /^v\d+\.\d+\.*$/
+    - master
+notifications:
+  email:
+    on_success: change
