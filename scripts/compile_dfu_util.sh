@@ -51,7 +51,7 @@ if [ $ARCH == "darwin" ]; then
     $CC -g -O2 \
         -o dfu-util$EXE \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
-        -lpthread $(pkg-config --cflags --static libusb-1.0) \
+        -lpthread $(pkg-config --cflags --static libusb-1.0) -ldl  -framework CoreFoundation \
         /usr/local/lib/libusb-1.0.a \
         -DHAVE_CONFIG_H=1
     $CC -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
