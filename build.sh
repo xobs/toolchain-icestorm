@@ -9,7 +9,7 @@ export LC_ALL=C
 # Generate toolchain-icestorm-arch-ver.tar.gz from source code
 # sources: http://www.clifford.at/icestorm/
 
-VERSION=1.11.1
+VERSION="${TRAVIS_TAG}"
 
 # -- Target architectures
 ARCH=$1
