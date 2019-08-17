@@ -102,6 +102,14 @@ mkdir -p $BUILD_DIR
 mkdir -p $PACKAGE_DIR/$NAME/bin
 mkdir -p $PACKAGE_DIR/$NAME/share
 
+# --------- Compile yosys ------------------------------------------
+if [ $COMPILE_YOSYS == "1" ]; then
+
+  print ">> Compile yosys"
+  . $WORK_DIR/scripts/compile_yosys.sh
+
+fi
+
 # --------- Compile dfu-utils ------------------------------------------
 if [ $COMPILE_DFU_UTIL == "1" ]; then
 
@@ -115,14 +123,6 @@ if [ $COMPILE_ICESTORM == "1" ]; then
 
   print ">> Compile icestorm"
   . $WORK_DIR/scripts/compile_icestorm.sh
-
-fi
-
-# --------- Compile yosys ------------------------------------------
-if [ $COMPILE_YOSYS == "1" ]; then
-
-  print ">> Compile yosys"
-  . $WORK_DIR/scripts/compile_yosys.sh
 
 fi
 
