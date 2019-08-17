@@ -83,4 +83,5 @@ if [ $ARCH == "darwin" ]; then
         tar xjf $dep
         popd
     done
+    export PATH=/tmp/conda/bin:$PATH
 fi
