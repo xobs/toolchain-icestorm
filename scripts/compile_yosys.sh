@@ -37,7 +37,7 @@ if [ $ARCH == "darwin" ]; then
     make config-clang
     /tmp/conda/bin/sed -i "s/-Wall -Wextra -ggdb/-w/;" Makefile
     make -j$J YOSYS_VER="$VER (Fomu build)" \
-            CXXFLAGS="-I/tmp/conda/include" LDFLAGS="-:/tmp/conda/lib" \
+            CXXFLAGS="-I/tmp/conda/include -std=c++11" LDFLAGS="-L/tmp/conda/lib" \
             ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1"
