@@ -47,6 +47,7 @@ EOF
 if [ $ARCH == "darwin" ]; then
     $CC -g -O2 \
         -o dfu-util$EXE \
+        -I/tmp/conda/include/libusb-1.0 \
         main.c dfu_load.c dfu_util.c dfuse.c dfuse_mem.c dfu.c dfu_file.c quirks.c \
         -lpthread \
         -lobjc -Wl,-framework,IOKit -Wl,-framework,CoreFoundation /tmp/conda/lib/libusb-1.0.a \
