@@ -41,8 +41,6 @@ if [ $ARCH == "darwin" ]; then
             ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 \
             ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" OPTFLAGS=\"-O\" \
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1"
-    otool -D yosys
-    otool -L yosys
 
 elif [ ${ARCH:0:7} == "windows" ]; then
   make config-gcc
