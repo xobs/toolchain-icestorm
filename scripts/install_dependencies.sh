@@ -82,8 +82,7 @@ if [ $ARCH == "darwin" ]; then
   else
     brew update
   fi
-  DEPS="bison flex gawk libffi git mercurial \
-        pkg-config python3 libusb gnu-sed wget"
+  DEPS="bison flex gawk libffi git pkg-config gnu-sed wget"
   brew install --force $DEPS
   brew upgrade python
 fi
