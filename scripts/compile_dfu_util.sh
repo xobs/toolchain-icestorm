@@ -56,6 +56,8 @@ if [ $ARCH == "darwin" ]; then
         -DHAVE_CONFIG_H=1
     $CC -o dfu-prefix$EXE prefix.c dfu_file.c -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
     $CC -o dfu-suffix$EXE suffix.c dfu_file.c -DHAVE_NANOSLEEP=1 -DHAVE_CONFIG_H=1
+    otool -L dfu-util
+    otool -D dfu-util
 else
     $CC -g -O2 -I$WORK_DIR/build-data/include/libusb-1.0 \
         -o dfu-util$EXE \
