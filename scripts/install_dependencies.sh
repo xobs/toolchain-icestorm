@@ -75,13 +75,18 @@ if [ $ARCH == "windows_amd64" ]; then
 fi
 
 if [ $ARCH == "darwin" ]; then
+    export PATH=/tmp/conda/bin:$PATH
     for dep in $(ls -1 $WORK_DIR/build-data/darwin/*.bz2)
     do
         mkdir -p /tmp/conda
         pushd /tmp/conda
         echo "Extracting $dep..."
         tar xjf $dep
+        if [ -e info/has_prefix ]
+        then
+            python3 $WORK_DIR/build-data/darwin/convert.py /tmp/conda
+            rm -f info/has_prefix
+        fi
         popd
     done
-    export PATH=/tmp/conda/bin:$PATH
 fi
