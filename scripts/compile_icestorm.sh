@@ -22,10 +22,10 @@ cd $BUILD_DIR/$ICESTORM
 
 # -- Compile it
 if [ $ARCH == "darwin" ]; then
-  gsed -i "s/-ggdb //;" config.mk
-  make -j$J CXX="$CXX" \
-            CXXFLAGS="-I/tmp/conda/include" LDFLAGS="-:/tmp/conda/lib" \
-            SUBDIRS="icebox icepack icemulti icepll icetime icebram"
+    /tmp/conda/bin/sed -i "s/-ggdb //;" config.mk
+    make -j$J CXX="$CXX" \
+              CXXFLAGS="-I/tmp/conda/include -std=c++11" LDFLAGS="-:/tmp/conda/lib" \
+              SUBDIRS="icebox icepack icemulti icepll icetime icebram"
 else
   sed -i "s/-ggdb //;" config.mk
   make -j$J CXX="$CXX" STATIC=1 \
