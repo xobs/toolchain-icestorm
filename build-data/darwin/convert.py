@@ -120,5 +120,5 @@ new_prefix=sys.argv[1]
 with open("info/has_prefix", "r") as f:
     for l in f:
         (prefix, t, filename) = l.rstrip().split(" ")
-        print("prefix: {}  t: {}  filename: {}".format(prefix, t, filename))
+        print("patching conda file {}".format(filename))
         update_prefix(filename, new_prefix, prefix, t)
