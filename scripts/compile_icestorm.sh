@@ -24,6 +24,7 @@ cd $BUILD_DIR/$ICESTORM
 if [ $ARCH == "darwin" ]; then
   gsed -i "s/-ggdb //;" config.mk
   make -j$J CXX="$CXX" \
+            CXXFLAGS="-I/tmp/conda/include" LDFLAGS="-:/tmp/conda/lib" \
             SUBDIRS="icebox icepack icemulti icepll icetime icebram"
 else
   sed -i "s/-ggdb //;" config.mk

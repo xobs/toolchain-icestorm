@@ -75,14 +75,12 @@ if [ $ARCH == "windows_amd64" ]; then
 fi
 
 if [ $ARCH == "darwin" ]; then
-  which -s brew
-  if [[ $? != 0 ]] ; then
-    # Install Homebrew
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  else
-    brew update
-  fi
-  DEPS="bison flex gawk libffi git pkg-config gnu-sed wget"
-  brew install --force $DEPS
-  brew upgrade python
+    for dep in $(ls -1 $WORK_DIR/build-data/darwin/*.bz2)
+    do
+        mkdir -p /tmp/conda
+        pushd /tmp/conda
+        echo "Extracting $dep..."
+        tar xjf $dep
+        popd
+    done
 fi
