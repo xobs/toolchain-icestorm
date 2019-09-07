@@ -12,7 +12,7 @@ fi
 
 if [ $ARCH == "linux_i686" ]; then
     sudo apt-get install -y $base_packages \
-                            gcc-multilib g++-multilib
+                            gcc-7-multilib g++-7-multilib
     gcc --version
     g++ --version
 fi
@@ -20,6 +20,7 @@ fi
 if [ $ARCH == "linux_armv7l" ]; then
     sudo apt-get install -y $base_packages \
                             gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
+                            gcc-7-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf \
                             binfmt-support qemu-user-static
     arm-linux-gnueabihf-gcc --version
     arm-linux-gnueabihf-g++ --version
@@ -28,6 +29,7 @@ fi
 if [ $ARCH == "linux_aarch64" ]; then
     sudo apt-get install -y $base_packages \
                             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
+                            gcc-7-aarch64-linux-gnu g++-7-aarch64-linux-gnu \
                             binfmt-support qemu-user-static
     sudo apt-get autoremove -y
     aarch64-linux-gnu-gcc --version
