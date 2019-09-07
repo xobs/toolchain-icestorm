@@ -1,60 +1,60 @@
 # Build setup script
 
 if [ $ARCH == "linux_x86_64" ]; then
-  CC="gcc"
-  CXX="g++"
-  ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
+    export CC="gcc"
+    export CXX="g++"
+    export ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
 fi
 
 if [ $ARCH == "linux_i686" ]; then
-  CC="gcc -m32"
-  CXX="g++ -m32"
-  ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
-  sudo ln -s /usr/include/asm-generic /usr/include/asm
+    export CC="gcc -m32"
+    export CXX="g++ -m32"
+    export ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
+    sudo ln -s /usr/include/asm-generic /usr/include/asm
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
-  CC="arm-linux-gnueabihf-gcc"
-  CXX="arm-linux-gnueabihf-g++"
-  HOST_FLAGS="--host=arm-linux-gnueabihf"
-  ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
+    export CC="arm-linux-gnueabihf-gcc"
+    export CXX="arm-linux-gnueabihf-g++"
+    export HOST_FLAGS="--host=arm-linux-gnueabihf"
+    export ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
-  CC="aarch64-linux-gnu-gcc"
-  CXX="aarch64-linux-gnu-g++"
-  HOST_FLAGS="--host=aarch64-linux-gnu"
-  ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
+    export CC="aarch64-linux-gnu-gcc"
+    export CXX="aarch64-linux-gnu-g++"
+    export HOST_FLAGS="--host=aarch64-linux-gnu"
+    export ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
 fi
 
 if [ $ARCH == "windows_x86" ]; then
-  PY=".py"
-  EXE=".exe"
-  CC="i686-w64-mingw32-gcc"
-  CXX="i686-w64-mingw32-g++"
-  HOST_FLAGS="--host=i686-w64-mingw32"
-  ABC_ARCHFLAGS="-DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
+    export PY=".py"
+    export EXE=".exe"
+    export CC="i686-w64-mingw32-gcc"
+    export CXX="i686-w64-mingw32-g++"
+    export HOST_FLAGS="--host=i686-w64-mingw32"
+    export ABC_ARCHFLAGS="-DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
-  PY=".py"
-  EXE=".exe"
-  CC="x86_64-w64-mingw32-gcc"
-  CXX="x86_64-w64-mingw32-g++"
-  HOST_FLAGS="--host=x86_64-w64-mingw32"
-  ABC_ARCHFLAGS="-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
+    export PY=".py"
+    export EXE=".exe"
+    export CC="x86_64-w64-mingw32-gcc"
+    export CXX="x86_64-w64-mingw32-g++"
+    export HOST_FLAGS="--host=x86_64-w64-mingw32"
+    export ABC_ARCHFLAGS="-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
 fi
 
 if [ $ARCH == "darwin" ]; then
-  CC="clang"
-  CXX="clang++"
-  ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
-  J=`sysctl -n hw.ncpu`
+    export CC="clang"
+    export CXX="clang++"
+    export ABC_ARCHFLAGS="-DLIN64 -DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4"
+    export J=`sysctl -n hw.ncpu`
 else
-  J=`nproc`
+    export J=`nproc`
 fi
 
 # Support for 1cpu machines
 if [ $J -gt 1 ]; then
-  J=$(($J-1))
+    J=$(($J-1))
 fi
