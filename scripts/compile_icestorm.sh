@@ -2,7 +2,7 @@
 # -- Compile Icestorm script
 
 ICESTORM=icestorm
-COMMIT=cfac9f950412ae139fa3c085c21881cbaf24822f
+COMMIT=95949315364f8d9b0c693386aefadf44b28e2cf6
 GIT_ICESTORM=https://github.com/cliffordwolf/icestorm.git
 
 cd $UPSTREAM_DIR
