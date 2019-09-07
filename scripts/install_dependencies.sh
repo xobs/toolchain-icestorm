@@ -1,29 +1,24 @@
 # Install dependencies script
 
+base_packages="build-essential bison flex libreadline-dev \
+               gawk tcl-dev libffi-dev git \
+               pkg-config python3"
+
 if [ $ARCH == "linux_x86_64" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages
     gcc --version
     g++ --version
 fi
 
 if [ $ARCH == "linux_i686" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages \
                             gcc-multilib g++-multilib
     gcc --version
     g++ --version
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages \
                             gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
                             binfmt-support qemu-user-static
     arm-linux-gnueabihf-gcc --version
@@ -31,10 +26,7 @@ if [ $ARCH == "linux_armv7l" ]; then
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages \
                             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
                             binfmt-support qemu-user-static
     sudo apt-get autoremove -y
@@ -43,23 +35,17 @@ if [ $ARCH == "linux_aarch64" ]; then
 fi
 
 if [ $ARCH == "windows_x86" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages \
                             mingw-w64 mingw-w64-tools mingw-w64-i686-dev \
-                            zip rsync
+                            zip
     i686-w64-mingw32-gcc --version
     i686-w64-mingw32-g++ --version
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
-    sudo apt-get update
-    sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
-                            gawk tcl-dev libffi-dev git graphviz \
-                            xdot pkg-config python3 \
+    sudo apt-get install -y $base_packages \
                             mingw-w64 mingw-w64-tools mingw-w64-x86-64-dev \
-                            zip rsync
+                            zip
     x86_64-w64-mingw32-gcc --version
     x86_64-w64-mingw32-g++ --version
 fi
