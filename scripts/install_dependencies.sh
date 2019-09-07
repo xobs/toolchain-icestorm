@@ -1,6 +1,7 @@
 # Install dependencies script
 
 if [ $ARCH == "linux_x86_64" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
@@ -9,6 +10,7 @@ if [ $ARCH == "linux_x86_64" ]; then
 fi
 
 if [ $ARCH == "linux_i686" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
@@ -18,6 +20,7 @@ if [ $ARCH == "linux_i686" ]; then
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
@@ -28,6 +31,7 @@ if [ $ARCH == "linux_armv7l" ]; then
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
@@ -39,6 +43,7 @@ if [ $ARCH == "linux_aarch64" ]; then
 fi
 
 if [ $ARCH == "windows_x86" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
@@ -49,6 +54,7 @@ if [ $ARCH == "windows_x86" ]; then
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
+    sudo apt-get update
     sudo apt-get install -y build-essential bison flex libreadline-dev libusb-1.0-0-dev zlib1g-dev \
                             gawk tcl-dev libffi-dev git graphviz \
                             xdot pkg-config python3 \
