@@ -1,15 +1,13 @@
+#!/bin/bash
 # -- Compile Yosys script
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=78b30bbb1102047585d1a2eac89b1c7f5ca7344e
+VER=903cd58acf7c490e0b75e34742966dc62e61028f
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
 REL_YOSYS=https://github.com/cliffordwolf/yosys/archive/$TAR_YOSYS
 GIT_YOSYS=https://github.com/cliffordwolf/yosys.git
-
-# -- Setup
-. $WORK_DIR/scripts/build_setup.sh
 
 cd $UPSTREAM_DIR
 
