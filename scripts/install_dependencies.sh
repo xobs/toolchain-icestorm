@@ -5,14 +5,14 @@ base_packages="build-essential bison flex libreadline-dev \
                pkg-config python3"
 
 if [ $ARCH == "linux_x86_64" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages
     gcc --version
     g++ --version
 fi
 
 if [ $ARCH == "linux_i686" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages \
                             gcc-7-multilib g++-7-multilib
     gcc --version
@@ -20,7 +20,7 @@ if [ $ARCH == "linux_i686" ]; then
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages \
                             gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf \
                             gcc-7-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf \
@@ -30,7 +30,7 @@ if [ $ARCH == "linux_armv7l" ]; then
 fi
 
 if [ $ARCH == "linux_aarch64" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages \
                             gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
                             binfmt-support qemu-user-static
@@ -40,7 +40,7 @@ if [ $ARCH == "linux_aarch64" ]; then
 fi
 
 if [ $ARCH == "windows_x86" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages \
                             mingw-w64 mingw-w64-tools mingw-w64-i686-dev \
                             zip
@@ -49,7 +49,7 @@ if [ $ARCH == "windows_x86" ]; then
 fi
 
 if [ $ARCH == "windows_amd64" ]; then
-    apt-get update
+    sudo apt-get update
     sudo apt-get install -y $base_packages \
                             mingw-w64 mingw-w64-tools mingw-w64-x86-64-dev \
                             zip
