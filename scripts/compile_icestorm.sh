@@ -1,11 +1,9 @@
+#!/bin/bash
 # -- Compile Icestorm script
 
 ICESTORM=icestorm
 COMMIT=cfac9f950412ae139fa3c085c21881cbaf24822f
 GIT_ICESTORM=https://github.com/cliffordwolf/icestorm.git
-
-# -- Setup
-. $WORK_DIR/scripts/build_setup.sh
 
 cd $UPSTREAM_DIR
 
