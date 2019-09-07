@@ -10,6 +10,7 @@ if [ $ARCH == "linux_i686" ]; then
   CC="gcc -m32"
   CXX="g++ -m32"
   ABC_ARCHFLAGS="-DLIN -DSIZEOF_VOID_P=4 -DSIZEOF_LONG=4 -DSIZEOF_INT=4"
+  sudo ln -s /usr/include/asm-generic /usr/include/asm
 fi
 
 if [ $ARCH == "linux_armv7l" ]; then
