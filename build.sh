@@ -6,9 +6,6 @@
 # Set english language for propper pattern matching
 export LC_ALL=C
 
-# Generate toolchain-icestorm-arch-ver.tar.gz from source code
-# sources: http://www.clifford.at/icestorm/
-
 VERSION="${TRAVIS_TAG}"
 
 # -- Target architectures
@@ -23,7 +20,6 @@ INSTALL_DEPS=1
 COMPILE_DFU_UTIL=1
 COMPILE_ICESTORM=1
 COMPILE_YOSYS=1
-COMPILE_ICOTOOLS=0
 CREATE_PACKAGE=1
 
 # -- Store current dir
@@ -41,6 +37,19 @@ mkdir -p $BUILDS_DIR
 mkdir -p $PACKAGES_DIR
 # -- Create the upstream directory and enter into it
 mkdir -p $UPSTREAM_DIR
+
+# -- Directory for compiling the tools
+BUILD_DIR=$BUILDS_DIR/build_$ARCH
+
+# -- Directory for installation the target files
+PACKAGE_DIR=$PACKAGES_DIR/build_$ARCH
+
+# -- Create the build dir
+mkdir -p $BUILD_DIR
+
+# -- Create the package folders
+mkdir -p $PACKAGE_DIR/$NAME/bin
+mkdir -p $PACKAGE_DIR/$NAME/share
 
 # -- Test script function
 function test_bin {
@@ -81,13 +90,7 @@ fi
 echo ""
 echo ">>> ARCHITECTURE \"$ARCH\""
 
-# -- Directory for compiling the tools
-BUILD_DIR=$BUILDS_DIR/build_$ARCH
-
-# -- Directory for installation the target files
-PACKAGE_DIR=$PACKAGES_DIR/build_$ARCH
-
-# --------- Instal dependencies ------------------------------------
+# --------- Install dependencies ------------------------------------
 if [ $INSTALL_DEPS == "1" ]; then
 
   print ">> Install dependencies"
@@ -95,12 +98,9 @@ if [ $INSTALL_DEPS == "1" ]; then
 
 fi
 
-# -- Create the build dir
-mkdir -p $BUILD_DIR
-
-# -- Create the package folders
-mkdir -p $PACKAGE_DIR/$NAME/bin
-mkdir -p $PACKAGE_DIR/$NAME/share
+# --------- Install dependencies ------------------------------------
+print ">> Set build flags"
+. $WORK_DIR/scripts/build_setup.sh
 
 # --------- Compile yosys ------------------------------------------
 if [ $COMPILE_YOSYS == "1" ]; then
@@ -123,18 +123,6 @@ if [ $COMPILE_ICESTORM == "1" ]; then
 
   print ">> Compile icestorm"
   . $WORK_DIR/scripts/compile_icestorm.sh
-
-fi
-
-# --------- Compile icotools ----------------------------------------
-if [ $COMPILE_ICOTOOLS == "1" ]; then
-
-  if [ $ARCH == "linux_armv7l" ]; then
-
-    print ">> Compile icotools for RPI"
-    . $WORK_DIR/scripts/compile_icotools.sh
-
-  fi
 
 fi
 
