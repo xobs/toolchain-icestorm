@@ -3,7 +3,7 @@
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=abc86fc2cd861628d2da977f62298bb924ce89a1
+VER=c9524edb9fb7bdcd9a2ab8f2bdc857f4d184b09a
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
 REL_YOSYS=https://github.com/xobs/yosys/archive/$TAR_YOSYS
