@@ -3,7 +3,7 @@
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=c9524edb9fb7bdcd9a2ab8f2bdc857f4d184b09a
+VER=670468cf92577d1193196367c19db9fcd4d3413c
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
 REL_YOSYS=https://github.com/xobs/yosys/archive/$TAR_YOSYS
@@ -41,8 +41,9 @@ if [ $ARCH == "darwin" ]; then
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1"
 
 elif [ ${ARCH:0:7} == "windows" ]; then
+    x86_64-w64-mingw32-g++ -dM -E - < /dev/null
     make config-msys2-64
-    make -j$J YOSYS_VER="$VER (Fomu build)" \
+    make -j$J YOSYS_VER="$VER (Fomu build)" PRETTY=0 \
               ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 ENABLE_PYOSYS=0
 else
   make config-gcc
