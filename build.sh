@@ -92,10 +92,8 @@ echo ">>> ARCHITECTURE \"$ARCH\""
 
 # --------- Install dependencies ------------------------------------
 if [ $INSTALL_DEPS == "1" ]; then
-
   print ">> Install dependencies"
   . $WORK_DIR/scripts/install_dependencies.sh
-
 fi
 
 # --------- Install dependencies ------------------------------------
@@ -104,32 +102,24 @@ print ">> Set build flags"
 
 # --------- Compile yosys ------------------------------------------
 if [ $COMPILE_YOSYS == "1" ]; then
-
   print ">> Compile yosys"
   . $WORK_DIR/scripts/compile_yosys.sh
-
 fi
 
 # --------- Compile dfu-utils ------------------------------------------
 if [ $COMPILE_DFU_UTIL == "1" ]; then
-
   print ">> Compile dfu-utils"
   . $WORK_DIR/scripts/compile_dfu_util.sh
-
 fi
 
 # --------- Compile icestorm ---------------------------------------
 if [ $COMPILE_ICESTORM == "1" ]; then
-
   print ">> Compile icestorm"
   . $WORK_DIR/scripts/compile_icestorm.sh
-
 fi
 
 # --------- Create the package -------------------------------------
 if [ $CREATE_PACKAGE == "1" ]; then
-
   print ">> Create package"
   . $WORK_DIR/scripts/create_package.sh
-
 fi
