@@ -42,7 +42,7 @@ if [ $ARCH == "windows_amd64" ]; then
     export CC="x86_64-w64-mingw32-gcc"
     export CXX="x86_64-w64-mingw32-g++"
     export HOST_FLAGS="--host=x86_64-w64-mingw32"
-    export ABC_ARCHFLAGS="-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=8 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
+    export ABC_ARCHFLAGS="-DSIZEOF_VOID_P=8 -DSIZEOF_LONG=4 -DSIZEOF_INT=4 -DWIN32_NO_DLL -DHAVE_STRUCT_TIMESPEC -D_POSIX_SOURCE -fpermissive -w"
 fi
 
 if [ $ARCH == "darwin" ]; then
