@@ -44,7 +44,6 @@ elif [ ${ARCH:0:7} == "windows" ]; then
     make config-msys2-64
     make -j$J YOSYS_VER="$VER (Fomu build)" PRETTY=0 \
               LDLIBS="-static -lstdc++ -lm" \
-
               ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm\" OPTFLAGS=\"-O\" \
                          ARCHFLAGS=\"$ABC_ARCHFLAGS\" \
                          ABC_USE_NO_READLINE=1 \
