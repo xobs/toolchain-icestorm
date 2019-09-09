@@ -41,26 +41,30 @@ if [ $ARCH == "darwin" ]; then
                        ARCHFLAGS=\"$ABC_ARCHFLAGS\" ABC_USE_NO_READLINE=1"
 
 elif [ ${ARCH:0:7} == "windows" ]; then
-    x86_64-w64-mingw32-g++ -dM -E - < /dev/null
     make config-msys2-64
     make -j$J YOSYS_VER="$VER (Fomu build)" PRETTY=0 \
               LDLIBS="-static -lstdc++ -lm" \
-    ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm -ldl -pthread\" OPTFLAGS=\"-O\" \
-               ARCHFLAGS=\"$ABC_ARCHFLAGS -Wno-unused-but-set-variable\" \
-               ABC_USE_NO_READLINE=1" \
-    ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 ENABLE_PYOSYS=0
+
+              ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm\" OPTFLAGS=\"-O\" \
+                         ARCHFLAGS=\"$ABC_ARCHFLAGS\" \
+                         ABC_USE_NO_READLINE=1 \
+                         ABC_USE_NO_PTHREADS=1 \
+                         ABC_USE_LIBSTDCXX=1" \
+              ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 ENABLE_PYOSYS=0
 
 else
-  make config-gcc
-  sed -i "s/-Wall -Wextra -ggdb/-w/;" Makefile
-  sed -i "s/LD = gcc$/LD = $CC/;" Makefile
-  sed -i "s/CXX = gcc$/CXX = $CC/;" Makefile
-  sed -i "s/LDFLAGS += -rdynamic/LDFLAGS +=/;" Makefile
-  make -j$J YOSYS_VER="$VER (Fomu build)" \
-            LDLIBS="-static -lstdc++ -lm" \
-            ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 ENABLE_PYOSYS=0 \
-            ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm -ldl -pthread\" OPTFLAGS=\"-O\" \
-                       ARCHFLAGS=\"$ABC_ARCHFLAGS -Wno-unused-but-set-variable\" ABC_USE_NO_READLINE=1"
+    make config-gcc
+    sed -i "s/-Wall -Wextra -ggdb/-w/;" Makefile
+    sed -i "s/LD = gcc$/LD = $CC/;" Makefile
+    sed -i "s/CXX = gcc$/CXX = $CC/;" Makefile
+    sed -i "s/LDFLAGS += -rdynamic/LDFLAGS +=/;" Makefile
+    make -j$J YOSYS_VER="$VER (Fomu build)" \
+                LDLIBS="-static -lstdc++ -lm" \
+                ENABLE_TCL=0 ENABLE_PLUGINS=0 ENABLE_READLINE=0 ENABLE_COVER=0 ENABLE_ZLIB=0 ENABLE_PYOSYS=0 \
+                ABCMKARGS="CC=\"$CC\" CXX=\"$CXX\" LIBS=\"-static -lm -ldl -pthread\" \
+                           OPTFLAGS=\"-O\" \
+                           ARCHFLAGS=\"$ABC_ARCHFLAGS -Wno-unused-but-set-variable\" \
+                           ABC_USE_NO_READLINE=1"
 fi
 
 EXE_O=
