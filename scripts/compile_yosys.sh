@@ -3,11 +3,11 @@
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=de7f570cfbebd16b45c92addba5a74f63f4f8c8f
+VER=c7f1368cd273f1d84507d29548f3420a08a82702
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
-REL_YOSYS=https://github.com/xobs/yosys/archive/$TAR_YOSYS
-GIT_YOSYS=https://github.com/xobs/yosys.git
+REL_YOSYS=https://github.com/YosysHQ/yosys/archive/$TAR_YOSYS
+GIT_YOSYS=https://github.com/YosysHQ/yosys.git
 
 cd $UPSTREAM_DIR
 
