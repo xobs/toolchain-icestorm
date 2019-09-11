@@ -18,7 +18,7 @@ if [ $REL -eq 1 ]; then
     tar zxf $TAR_YOSYS
 else
     # -- Clone the sources from github
-    git clone -b smtbmc-msvc2-build-fixes --depth=1 $GIT_YOSYS $YOSYS
+    git clone --depth=1 $GIT_YOSYS $YOSYS
     git -C $YOSYS pull
     echo ""
     git -C $YOSYS reset --hard $VER
