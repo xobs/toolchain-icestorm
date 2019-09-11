@@ -3,16 +3,16 @@ dist: bionic
 language: cpp
 matrix:
   include:
-  # - os: osx
-  #   env: TARGET=darwin EXT=tar.gz MACOSX_DEPLOYMENT_TARGET=10.10
-  # - os: linux
-  #   env: TARGET=linux_x86_64 EXT=tar.gz
-  # - os: linux
-  #   env: TARGET=linux_i686 EXT=tar.gz
-  # - os: linux
-  #   env: TARGET=linux_armv7l EXT=tar.gz
-  # - os: linux
-  #   env: TARGET=linux_aarch64 EXT=tar.gz
+  - os: osx
+    env: TARGET=darwin EXT=tar.gz MACOSX_DEPLOYMENT_TARGET=10.10
+  - os: linux
+    env: TARGET=linux_x86_64 EXT=tar.gz
+  - os: linux
+    env: TARGET=linux_i686 EXT=tar.gz
+  - os: linux
+    env: TARGET=linux_armv7l EXT=tar.gz
+  - os: linux
+    env: TARGET=linux_aarch64 EXT=tar.gz
   - os: linux
     env: TARGET=windows_x86 EXT=zip
   - os: linux
