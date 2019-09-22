@@ -72,4 +72,7 @@ if [ $ARCH == "darwin" ]; then
         fi
         popd
     done
-fi
+else
+  cp $WORK_DIR/build-data/lib/$ARCH/libftdi1.a $WORK_DIR/build-data/lib/$ARCH/libftdi.a
+fi    
+
