@@ -75,7 +75,8 @@ if [ $ARCH == "darwin" ]; then
     echo Listing content of /tmp/conda/lib/
     find /tmp/conda/lib/
     echo copying libftdi1 to libftdi
-    cp /tmp/conda/lib/libftdi1.dylib $WORK_DIR/build-data/lib/$ARCH/libftdi.dylib
+    cp /tmp/conda/lib/libftdi1.a /tmp/conda/lib/libftdi.a
+    cp /tmp/conda/lib/libftdi1.dylib /tmp/conda/lib/libftdi.dylib
 else
     cp $WORK_DIR/build-data/lib/$ARCH/libftdi1.a $WORK_DIR/build-data/lib/$ARCH/libftdi.a
 fi    
