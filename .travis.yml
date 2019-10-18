@@ -38,7 +38,6 @@ branches:
     # Release tags
     - /^v\d+\.\d+/
     - master
-    - icebreaker-support
 notifications:
   email:
     on_success: change
