@@ -72,8 +72,6 @@ if [ $ARCH == "darwin" ]; then
         fi
         popd
     done
-    echo Listing content of /tmp/conda/lib/
-    find /tmp/conda/lib/
     echo copying libftdi1 to libftdi
     cp /tmp/conda/lib/libftdi1.a /tmp/conda/lib/libftdi.a
     cp /tmp/conda/lib/libftdi1.dylib /tmp/conda/lib/libftdi.dylib
