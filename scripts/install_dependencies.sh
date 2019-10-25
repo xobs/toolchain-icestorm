@@ -72,4 +72,10 @@ if [ $ARCH == "darwin" ]; then
         fi
         popd
     done
-fi
+    echo copying libftdi1 to libftdi
+    cp /tmp/conda/lib/libftdi1.a /tmp/conda/lib/libftdi.a
+    cp /tmp/conda/lib/libftdi1.dylib /tmp/conda/lib/libftdi.dylib
+else
+    cp $WORK_DIR/build-data/lib/$ARCH/libftdi1.a $WORK_DIR/build-data/lib/$ARCH/libftdi.a
+fi    
+
