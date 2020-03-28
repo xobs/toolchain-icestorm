@@ -100,16 +100,16 @@ fi
 print ">> Set build flags"
 . $WORK_DIR/scripts/build_setup.sh
 
-# --------- Compile yosys ------------------------------------------
-if [ $COMPILE_YOSYS == "1" ]; then
-  print ">> Compile yosys"
-  . $WORK_DIR/scripts/compile_yosys.sh
-fi
-
 # --------- Compile dfu-utils ------------------------------------------
 if [ $COMPILE_DFU_UTIL == "1" ]; then
   print ">> Compile dfu-utils"
   . $WORK_DIR/scripts/compile_dfu_util.sh
+fi
+
+# --------- Compile yosys ------------------------------------------
+if [ $COMPILE_YOSYS == "1" ]; then
+  print ">> Compile yosys"
+  . $WORK_DIR/scripts/compile_yosys.sh
 fi
 
 # --------- Compile icestorm ---------------------------------------
