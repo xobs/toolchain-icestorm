@@ -77,5 +77,5 @@ if [ $ARCH == "darwin" ]; then
     cp /tmp/conda/lib/libftdi1.dylib /tmp/conda/lib/libftdi.dylib
 else
     cp $WORK_DIR/build-data/lib/$ARCH/libftdi1.a $WORK_DIR/build-data/lib/$ARCH/libftdi.a
-fi    
+fi
 
