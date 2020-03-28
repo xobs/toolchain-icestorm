@@ -3,7 +3,7 @@
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=a2fa1654dcb20960cc0ae03dcad399d7c6b5f80a
+VER=7f5c73d58fd732a96e480083896cd73c722849ba
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
 REL_YOSYS=https://github.com/YosysHQ/yosys/archive/$TAR_YOSYS
@@ -18,7 +18,7 @@ if [ $REL -eq 1 ]; then
     tar zxf $TAR_YOSYS
 else
     # -- Clone the sources from github
-    git clone --depth=1 $GIT_YOSYS $YOSYS
+    git clone $GIT_YOSYS $YOSYS
     git -C $YOSYS pull
     echo ""
     git -C $YOSYS reset --hard $VER
