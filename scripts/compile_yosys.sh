@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/bash -x
 # -- Compile Yosys script
 
 REL=0 # 1: load from release tag. 0: load from source code
 
-VER=7f5c73d58fd732a96e480083896cd73c722849ba
+VER=a2fa1654dcb20960cc0ae03dcad399d7c6b5f80a
 YOSYS=yosys-yosys-$VER
 TAR_YOSYS=yosys-$VER.tar.gz
 REL_YOSYS=https://github.com/YosysHQ/yosys/archive/$TAR_YOSYS
